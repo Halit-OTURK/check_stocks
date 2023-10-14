@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -39,19 +40,13 @@ int x=0;
                 System.out.println("puritan = Sold Out");
                 driver2.get("https://www.youtube.com/shorts/iVSNeDiXsgU");
                 driver2.findElement(By.xpath("(//button[@class = 'ytp-large-play-button ytp-button'])[1]")).click();
-                WebDriverWait wait;
-                wait = new WebDriverWait(driver2,Duration.ofSeconds(10));
-
+                WebDriverWait wait = new WebDriverWait(driver2,Duration.ofSeconds(10));
+                wait.withTimeout(Duration.ofSeconds(10));
+                wait.until(ExpectedConditions.visibilityOfAllElements());
                 // driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 System.out.println("puritan = IN STOCK");
             }
 
-            // driver2.manage().timeouts().implicitlyWait(Duration.ofMinutes(5));
-            // is bitene kadar bekliyor sonra is bitince kapatiyor
-
-/*WebDriverWait wait = new WebDriverWait(driver,30);
-WebElement element = wait.until(
-ExpectedConditions.elementToBeClickable(By.id(item))); */
             driver2.close();
 
             int minutes = 1;
