@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,30 +27,34 @@ int x=0;
             }
             driver.close();
 
-            //  WebDriverManager.chromedriver().setup();
             WebDriver driver2 = new ChromeDriver();
             driver2.manage().window().maximize();
-            driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            // driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver2.get("https://www.puritan.com/joint-support-062/glucosamine-chondroitin-msm-2-per-day-formula-023413");
 
-            String stockCheck2 = driver2.findElement(By.xpath("//p[text()='Currently out of stock']")).getText();
+            WebElement outOfStock = driver2.findElement(By.xpath("//p[text()='Currently out of stock']"));
+            String stockCheck2 = outOfStock.getText();
             boolean soldOut2 = stockCheck.equalsIgnoreCase("Sold out");
 
+            WebDriverWait wait = new WebDriverWait(driver2,Duration.ofSeconds(10));
+            // wait2.withTimeout(Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(outOfStock));
 
             if (soldOut) {
                 System.out.println("puritan = Sold Out");
+                            }
+            else {
                 driver2.get("https://www.youtube.com/shorts/iVSNeDiXsgU");
                 driver2.findElement(By.xpath("(//button[@class = 'ytp-large-play-button ytp-button'])[1]")).click();
-                WebDriverWait wait = new WebDriverWait(driver2,Duration.ofSeconds(10));
-                wait.withTimeout(Duration.ofSeconds(10));
-                wait.until(ExpectedConditions.visibilityOfAllElements());
-                // driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                WebDriverWait wait2 = new WebDriverWait(driver2,Duration.ofSeconds(10));
+               // wait2.withTimeout(Duration.ofSeconds(10));
+                wait2.until(ExpectedConditions.visibilityOfAllElements());
                 System.out.println("puritan = IN STOCK");
             }
 
             driver2.close();
 
-            int minutes = 1;
+        /*    int minutes = 1;
 
             for (int i = minutes; i > 0; i--) {
                 for (int z = 59; z >= 0; z--) {
@@ -57,7 +62,9 @@ int x=0;
 
                 }
             }
+          */
 
+            System.out.print("\r" + (x + 1) + ". kontrol tamamlandi");
             x++;
         }
     }
