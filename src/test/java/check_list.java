@@ -26,7 +26,7 @@ public class check_list {
             try {
                 String stockCheck = driver.findElement(By.xpath("//div[text()='Sold out']")).getText();
                 System.out.println("steelfitusa = Sold Out");
-                driver.close();
+              //  driver.close();
             } catch (NoSuchElementException e) {
 
                 e.printStackTrace();
@@ -63,7 +63,7 @@ public class check_list {
                 wait.until(ExpectedConditions.visibilityOf(outOfStock));
                 String stockCheck2 = outOfStock.getText();
                 System.out.println("puritan = Sold Out");
-                driver2.close();
+               // driver2.close();
 
             } catch (Exception e) {
                 driver2.manage().window().maximize();
@@ -100,7 +100,7 @@ public class check_list {
             }
 */
 
-            System.out.print("\r" + (x + 1) + ". kontrol tamamlandi");
+            System.out.println("\r" + (x + 1) + ". kontrol tamamlandi");
             x++;
         }
     }
