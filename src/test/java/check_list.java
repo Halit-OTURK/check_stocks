@@ -76,7 +76,7 @@ public class check_list {
             }
 
             Thread.sleep(9000);
-            driver.close();
+            driver2.close();
 
           /*  WebElement outOfStock = null;
             outOfStock = driver2.findElement(By.xpath("//p[text()='Currently out of stock']"));
